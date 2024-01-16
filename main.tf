@@ -22,7 +22,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "backup_bucket" {
-  bucket = "my-backup-bucket"
+  bucket = "tiger-kun-backup-bucket"
 }
 
 resource "aws_s3_bucket_ownership_controls" "backup_bucket_ownership_controls" {
