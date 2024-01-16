@@ -37,3 +37,19 @@ You use a Bucket ACL to ensure that only authorized people or services can acces
 - **`public-read`**: Anyone on the internet can read (but not write) the contents of the bucket. Useful for hosting public files, but be cautious with this setting due to security concerns.
 - **`public-read-write`**: Anyone can read and write to the bucket. This setting is generally not recommended due to security risks.
 - **`authenticated-read`**: Only authenticated AWS users (any AWS account) can read the contents of the bucket.
+
+# S3 Bucket Versioning
+
+Versioning in an S3 bucket is like keeping a history of all the changes made to the files in that bucket. When you enable versioning, every time you upload a file with the same name as an existing file, instead of replacing the old file, AWS S3 keeps both versions.
+
+It's good for tracking changes and data recovery. In our case since we're using S3 for backups, we want to enable versioning so we can recover from accidental deletions or overwrites.
+
+# S3 Bucket Server-Side Encryption
+
+Server-side encryption is about protecting your files by encrypting them when they are stored in your S3 bucket. AWS handles the encryption and decryption automatically.
+
+It's a feature where AWS encrypts your files when you upload them to S3 and decrypts them when you access them. This all happens on the server side (hence the name).
+
+It's good for data protection.
+
+`AES256`: This stands for Advanced Encryption Standard with a 256-bit key. It's a strong encryption method.
