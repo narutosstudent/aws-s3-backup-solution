@@ -21,6 +21,7 @@ provider "aws" {
   region = "us-west-2"
 }
 
+
 resource "aws_s3_bucket" "backup_bucket" {
   bucket = "tiger-kun-backup-bucket"
 }
@@ -37,4 +38,22 @@ resource "aws_s3_bucket_acl" "backup_bucket_acl" {
 
   bucket = aws_s3_bucket.backup_bucket.id
   acl    = "private" # private since this is sensitive data considered as backup
+}
+
+resource "aws_s3_bucket_versioning" "backup_bucket_versioning" {
+  bucket = aws_s3_bucket.backup_bucket.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+
+}
+
+resource "aws_s3_bucket_server_side_encryption_configuration" "example" {
+  bucket = aws_s3_bucket.backup_bucket.id
+
+  rule {
+    apply_server_side_encryption_by_default {
+      sse_algorithm = "AES256"
+    }
+  }
 }
