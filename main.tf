@@ -1,9 +1,9 @@
 terraform {
 
   cloud {
-    organization = "tiger_projects"
+    organization = "{organization}"
     workspaces {
-      name = "backup-s3-solution"
+      name = "{workspace}"
     }
   }
 
@@ -23,7 +23,7 @@ provider "aws" {
 
 
 resource "aws_s3_bucket" "backup_bucket" {
-  bucket = "tiger-kun-backup-bucket"
+  bucket = "{bucket_name}"
 }
 
 resource "aws_s3_bucket_lifecycle_configuration" "backup_lifecycle_configuration" {
