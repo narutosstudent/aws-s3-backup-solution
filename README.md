@@ -53,3 +53,25 @@ It's a feature where AWS encrypts your files when you upload them to S3 and decr
 It's good for data protection.
 
 `AES256`: This stands for Advanced Encryption Standard with a 256-bit key. It's a strong encryption method.
+
+# S3 Bucket Lifecycle Configuration
+
+A lifecycle configuration in an S3 bucket is like setting up automatic rules to manage your files over time. It tells AWS what to do with your files as they get older or meet certain conditions.
+
+It's a set of rules that automate processes like deleting old files or moving them to cheaper storage options. This helps manage and reduce costs, especially for data that you don't need to access frequently.
+
+In our case, we'll delete old backups after 90 days.
+
+```
+resource "aws_s3_bucket_lifecycle_configuration" "backup_lifecycle_configuration" {
+  bucket = aws_s3_bucket.backup_bucket.id
+
+  rule {
+    id     = "backup_rule"
+    status = "Enabled"
+    noncurrent_version_expiration {
+      noncurrent_days = 90
+    }
+  }
+}
+```
