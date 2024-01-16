@@ -26,6 +26,18 @@ resource "aws_s3_bucket" "backup_bucket" {
   bucket = "tiger-kun-backup-bucket"
 }
 
+resource "aws_s3_bucket_lifecycle_configuration" "backup_lifecycle_configuration" {
+  bucket = aws_s3_bucket.backup_bucket.id
+
+  rule {
+    id     = "backup_rule"
+    status = "Enabled"
+    noncurrent_version_expiration {
+      noncurrent_days = 90
+    }
+  }
+}
+
 resource "aws_s3_bucket_ownership_controls" "backup_bucket_ownership_controls" {
   bucket = aws_s3_bucket.backup_bucket.id
   rule {
