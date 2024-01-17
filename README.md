@@ -1,7 +1,5 @@
 # Backup solution with AWS S3
 
-Absolutely, I'll explain these concepts in simpler terms.
-
 # S3 Bucket Ownership Controls
 
 When you upload a file to an Amazon S3 bucket, there's a question of who "owns" that file. In AWS, each piece of data (like a file) can have an owner, and this owner has certain rights over the file, like who can access or modify it.
